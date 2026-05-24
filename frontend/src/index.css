@@ -1,0 +1,62 @@
+/* ===== GLOBAL ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --primary: #103B73;
+  --medium: #1E5AA8;
+  --light-blue: #EEF5FD;
+  --accent: #296DCC;
+  --white: #FFFFFF;
+  --bg: #F7FAFE;
+  --card-bg: #FFFFFF;
+  --text-dark: #14304F;
+  --text-muted: #607794;
+  --border: #D9E5F2;
+  --success: #22C55E;
+  --danger: #B84B5C;
+  --warning: #D18A2D;
+  --chat-bg: #FAFCFF;
+  --sidebar-hover: rgba(255,255,255,0.12);
+  --sidebar-active: #2B6FCF;
+  --sidebar-text: rgba(255,255,255,0.72);
+  --sidebar-text-active: #fff;
+  --badge-bg: rgba(255,255,255,0.14);
+  --badge-active: rgba(255,255,255,0.28);
+  --input-bg: #FAFCFF;
+  --msg-ai-bg: #F2F7FD;
+  --msg-user-bg: #296DCC;
+}
+
+html, body, #root { height: 100%; width: 100%; overflow: hidden; }
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background:
+    radial-gradient(circle at top right, rgba(41,109,204,0.08), transparent 30%),
+    linear-gradient(180deg, #F8FBFF 0%, var(--bg) 100%);
+  color: var(--text-dark);
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.3s, color 0.3s;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 260px 1fr 320px;
+  height: 100vh;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--medium); }
+button:active { opacity: 0.85; }
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes bounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-6px); } }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+.fade-in { animation: fadeIn 0.25s ease; }
+.slide-up { animation: slideUp 0.3s ease; }

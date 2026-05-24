@@ -1,0 +1,45 @@
+.task-card {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 12px 14px; background: var(--card-bg);
+  border: 1px solid var(--border); border-radius: 10px;
+  margin-bottom: 6px; transition: all 0.2s;
+}
+.task-card:hover { border-color: var(--accent); box-shadow: 0 1px 4px rgba(4,44,83,0.06); }
+.task-card-done { opacity: 0.55; }
+.task-card-overdue { border-left: 3px solid var(--danger); }
+
+.task-check {
+  width: 20px; height: 20px; min-width: 20px; border-radius: 50%;
+  border: 2px solid var(--accent); background: transparent;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s; margin-top: 1px; padding: 0;
+}
+.task-check:hover { background: var(--light-blue); }
+.task-check-done { background: var(--success) !important; border-color: var(--success) !important; }
+
+.task-card-body { flex: 1; min-width: 0; cursor: default; }
+.task-title { font-size: 13.5px; font-weight: 500; color: var(--text-dark); line-height: 1.4; word-break: break-word; }
+.task-title-done { text-decoration: line-through; color: var(--text-muted); }
+
+.task-edit-input {
+  width: 100%; border: 1px solid var(--accent); border-radius: 6px;
+  padding: 4px 8px; outline: none; font-size: 13.5px; font-weight: 500;
+  font-family: inherit; background: var(--light-blue); color: var(--text-dark);
+}
+
+.task-meta { display: flex; align-items: center; gap: 6px; margin-top: 5px; flex-wrap: wrap; }
+.task-tag {
+  font-size: 10.5px; font-weight: 600; padding: 2px 8px;
+  border-radius: 20px; border: 1px solid; text-transform: capitalize;
+}
+.task-due { font-size: 11px; color: var(--text-muted); font-weight: 500; }
+.task-due-overdue { color: var(--danger) !important; font-weight: 700; }
+.task-priority { display: flex; align-items: center; gap: 1px; }
+
+.task-delete-btn {
+  opacity: 0; background: none; border: none; cursor: pointer;
+  color: var(--text-muted); font-size: 16px; padding: 2px;
+  line-height: 1; flex-shrink: 0; transition: all 0.15s;
+}
+.task-card:hover .task-delete-btn { opacity: 1; }
+.task-delete-btn:hover { color: var(--danger); }
