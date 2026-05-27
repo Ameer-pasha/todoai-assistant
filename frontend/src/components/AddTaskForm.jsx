@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './AddTaskForm.css';
 
-export default function AddTaskForm({ onAdd, onClose }) {
+export default function AddTaskForm({ onAdd, onClose, initialTag = 'personal' }) {
   const [title, setTitle] = useState('');
-  const [tag, setTag] = useState('personal');
+  const [tag, setTag] = useState(initialTag);
   const [priority, setPriority] = useState(3);
   const [dueDate, setDueDate] = useState('');
   const inputRef = useRef(null);
@@ -19,7 +19,7 @@ export default function AddTaskForm({ onAdd, onClose }) {
       priority,
       due_date: dueDate || null,
     });
-    setTitle(''); setTag('personal'); setPriority(3); setDueDate('');
+    setTitle(''); setTag(initialTag); setPriority(3); setDueDate('');
     onClose();
   };
 

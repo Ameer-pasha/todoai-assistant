@@ -1,7 +1,7 @@
 .add-form {
-  margin: 12px 20px 0; background: var(--card-bg);
+  margin: 12px 0 0; background: var(--card-bg);
   border: 1.5px solid var(--accent); border-radius: 10px;
-  padding: 14px; box-shadow: 0 0 0 3px rgba(55,138,221,0.08);
+  padding: 14px; box-shadow: 0 0 0 3px rgba(167,139,250,0.12);
 }
 .add-form-input {
   width: 100%; border: none; font-size: 14px; font-weight: 500;
@@ -18,9 +18,9 @@
   text-transform: capitalize; transition: all 0.15s;
 }
 .add-tag-btn:hover { border-color: var(--accent); }
-.add-tag-active[data-tag="personal"] { background: #EEF5FF; color: #204E7A; border-color: #BDD7F5; }
-.add-tag-active[data-tag="work"] { background: #DCEEFF; color: #0D3B66; border-color: #8DC0F7; }
-.add-tag-active[data-tag="urgent"] { background: #E7F1FF; color: #123A62; border-color: #7DAFE8; }
+.add-tag-active[data-tag="personal"] { background: #f0ecff; color: #705ad6; border-color: #c4b5fd; }
+.add-tag-active[data-tag="work"] { background: #e9f6f1; color: #29735d; border-color: #9ed8c2; }
+.add-tag-active[data-tag="urgent"] { background: #fff0f5; color: #b83263; border-color: #f4a6c1; }
 
 .add-priority-select, .add-date-input {
   font-size: 11px; padding: 4px 8px; border-radius: 6px;

@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import Sidebar from './components/Sidebar';
+import DashboardPanel from './components/DashboardPanel';
 import TaskList from './components/TaskList';
 import ChatPanel from './components/ChatPanel';
 import { useTasks } from './hooks/useTasks';
@@ -8,17 +9,17 @@ import { getOllamaStatus } from './api';
 
 export default function App() {
   const {
-    tasks, loading, refresh, toggle, edit, remove, clearDone, clearAll,
+    tasks, loading, refresh, add, toggle, edit, remove, clearDone, clearAll,
   } = useTasks();
 
   const { messages, loading: chatLoading, send, clear: clearChat } = useChat(refresh);
 
-  const [activeFilter, setActiveFilter] = useState('all');
+  const [activeFilter, setActiveFilter] = useState('dashboard');
   const [ollamaStatus, setOllamaStatus] = useState({ reachable: false, model: 'llama3.2' });
   const [chatDraft, setChatDraft] = useState('');
   const [chatDraftRequest, setChatDraftRequest] = useState(0);
+  const [manualAddOpen, setManualAddOpen] = useState(false);
 
-  // Check Ollama status periodically
   useEffect(() => {
     const check = async () => {
       try {
@@ -33,10 +34,8 @@ export default function App() {
     return () => clearInterval(iv);
   }, []);
 
-  // Keyboard shortcuts
   useEffect(() => {
     const handler = (e) => {
-      // `/` to focus chat input
       if (e.key === '/' && !e.target.closest('input, textarea, select')) {
         e.preventDefault();
         document.getElementById('chat-input')?.focus();
@@ -46,7 +45,6 @@ export default function App() {
     return () => window.removeEventListener('keydown', handler);
   }, []);
 
-  // Handle chat send — process filter switching
   const handleChatSend = useCallback(async (text) => {
     const result = await send(text);
     if (result?.type === 'action' && result.filter) {
@@ -57,6 +55,14 @@ export default function App() {
   const openAddTaskInChat = useCallback(() => {
     setChatDraft('Add this task with start date and end date: ');
     setChatDraftRequest((value) => value + 1);
+  }, []);
+
+  const openManualAddTask = useCallback(() => {
+    setManualAddOpen(true);
+  }, []);
+
+  const closeManualAddTask = useCallback(() => {
+    setManualAddOpen(false);
   }, []);
 
   return (
@@ -70,15 +76,27 @@ export default function App() {
         ollamaStatus={ollamaStatus}
       />
 
-      <TaskList
-        tasks={tasks}
-        loading={loading}
-        activeFilter={activeFilter}
-        onToggle={toggle}
-        onEdit={edit}
-        onDelete={remove}
-        onStartAddTask={openAddTaskInChat}
-      />
+      <div className="main-panel">
+        {activeFilter === 'dashboard' ? (
+          <DashboardPanel
+            tasks={tasks}
+            onFilterChange={setActiveFilter}
+          />
+        ) : (
+          <TaskList
+            tasks={tasks}
+            loading={loading}
+            activeFilter={activeFilter}
+            onToggle={toggle}
+            onEdit={edit}
+            onDelete={remove}
+            onStartAddTask={openManualAddTask}
+            onAddTask={add}
+            addTaskOpen={manualAddOpen}
+            onCloseAddTask={closeManualAddTask}
+          />
+        )}
+      </div>
 
       <ChatPanel
         messages={messages}

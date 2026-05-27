@@ -101,7 +101,7 @@ function welcomeMsg() {
     id: 'welcome',
     from: 'ai',
     role: 'assistant',
-    text: 'TodoAI task assistant is ready.\n\nTry:\n"Add submit report by Friday urgent"\n"Show urgent tasks"\n"Mark all work tasks done"\n"What is pending?"',
+    text: 'Oho, I am ready to help.\n\nI can add tasks, show pending work, mark tasks done, summarize your list, and ask before deleting anything important.\n\nTry:\n"Add submit report by Friday urgent"\n"Show urgent tasks"\n"Mark all work tasks done"\n"Delete every task"\n"What should I do today?"',
     ts: Date.now(),
   };
 }
