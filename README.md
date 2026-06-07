@@ -2,6 +2,7 @@
 
 TodoAI is a full-stack AI-powered todo app built with React, FastAPI, SQLite, and Ollama.
 
+
 You can:
 
 - add tasks manually or through chat
